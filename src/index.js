@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import App from './App';
 
-ReactDom.render(<h1>Miguel Ángel te amo</h1>,
+ReactDom.render(<App />,
   document.getElementById('app'));
