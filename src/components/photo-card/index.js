@@ -9,16 +9,24 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE}) => {
   const [show, setShow] = useState(false);
 
   //hace que solo lo muestre cuando están en el el viewport. Ejemplo básico LazyLoading
+  //detecta si es compatible el IntersectionObserver, si no hace el import dinamico
   useEffect(() => {
-    const observer = new window.IntersectionObserver((entries) => {
-      //console.log(entries);
-      const { isIntersecting } = entries[0];
-      if (isIntersecting) {
-        setShow(true);
-        observer.disconnect();
-      }
+    Promise.resolve(
+      typeof window.IntersectionObserver !== 'undefined' ?
+        window.IntersectionObserver
+        :
+        import('intersection-observer')//import dinamico
+    ).then(() => {
+      const observer = new window.IntersectionObserver((entries) => {
+        //console.log(entries);
+        const { isIntersecting } = entries[0];
+        if (isIntersecting) {
+          setShow(true);
+          observer.disconnect();
+        }
+      });
+      observer.observe(element.current);
     });
-    observer.observe(element.current);
   }, [element]);
 
   //a Article se le poone una altura minima pq si no lo pone a 0 de salida y lo detecta como que lo está mostrando en el viewport
