@@ -8,7 +8,7 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_300/q_8
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE}) => {
   const [show, element] = useNearScreen();
-  const key = 'like-'+id;
+  const key = 'like-' + id;
   const [liked, setLiked] = useLocalStorage(key, false);
   const Icon = liked ? MdFavorite : MdFavoriteBorder;
 
@@ -18,7 +18,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE}) => {
       {
         show &&
           <Fragment>
-            <a href={`/detail/${id}`}>
+            <a href={`/?detail=${id}`}>
               <ImageWrapper>
                 <Img src={src} />
               </ImageWrapper>
