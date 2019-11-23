@@ -5,10 +5,16 @@ import { Form, Input, Button, Title } from './style'
 export const UserForm = ({ onSubmit, title }) => {
   const email = useInputValue('')
   const password = useInputValue('')
+
+  const handleSubmt = (event) => {
+    event.preventDefault()
+    onSubmit({ email: email.value, password: password.value })
+  }
+
   return (
     <>
       <Title>{title}</Title>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={handleSubmt}>
         {/* eslint-disable-next-line react/jsx-handler-names */}
         <Input placeholder='Email' value={email.value} onChange={email.onChange} />
         {/* eslint-disable-next-line react/jsx-handler-names */}
