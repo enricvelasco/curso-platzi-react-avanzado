@@ -20,7 +20,7 @@ export const UserForm = ({ onSubmit, title, error, disabled }) => {
         <Input placeholder='Email' disabled={disabled} value={email.value} onChange={email.onChange} />
         {/* eslint-disable-next-line react/jsx-handler-names */}
         <Input placeholder='Password' type='password' disabled={disabled} value={password.value} onChange={password.onChange} />
-        <SubmitButton disabled={disabled} title={title} />
+        <SubmitButton disabled={disabled}>{title}</SubmitButton>
       </Form>
       {error && <Error>{error}</Error>}
     </>
